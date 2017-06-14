@@ -1,0 +1,53 @@
+<div class="booking-container">
+  <div class="booking">
+    <div class="race-view-header">
+      <h2 class="booking-header">Пошук рейсу</h2>
+      <div class="button-wrapper">
+        <button class="btn btn-success" [routerLink]="['all']">Переглянути усі рейси</button>
+      </div>
+    </div>
+
+
+    <form class="form-signin" *ngIf="direction && direction.from && direction.to" #f="ngForm" (ngSubmit)="find()">
+      <div class="form-group">
+        <label>Країна відправлення</label>
+        <br>
+        <select2 [data]="countriesArray" [width]="530" [value]="direction.from.country_ISO" (valueChanged)="fromChanged($event)" name="fromCountry" ngDefaultControl></select2>
+      </div>
+
+      <div class="form-group">
+        <label>Країна прибуття</label>
+        <br>
+        <select2 [data]="countriesArray" [width]="530" [value]="direction.to.country_ISO" (valueChanged)="toChanged($event)" name="toCountry" ngDefaultControl></select2>
+      </div>
+
+      <p class="error" *ngIf="directionsSameError">Напрямки відправлення та прибуття не можуть бути однаковими</p>
+
+
+      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Знайти рейс</button>
+    </form>
+  </div>
+
+
+  <section class="found-races" *ngIf="data.length">
+    <h3 style="text-align: center">Знайдені Рейси</h3>
+    <ng-table [config]="config"
+              (tableChanged)="onChangeTable(config)"
+              (cellClicked)="onCellClick($event)"
+              [rows]="rows" [columns]="columns">
+    </ng-table>
+    <pagination *ngIf="config.paging"
+                class="pagination-sm"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+    <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+  </section>
+
+</div>

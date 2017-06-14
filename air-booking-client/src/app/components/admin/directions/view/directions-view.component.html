@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <section class="directions-view-block">
+    <h2 class="directions-header">Таблиця напрямків рейсів</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-warning" [routerLink]="['../plane/create']">Додати новий літак</button>
+      </div>
+      <button class="btn btn-success" [routerLink]="['../create']">Створити новий напрямок</button>
+    </div>
+    <br>
+    <ng-table [config]="config"
+              (tableChanged)="onChangeTable(config)"
+              (cellClicked)="onCellClick($event)"
+              [rows]="rows" [columns]="columns">
+    </ng-table>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Видалення рейсу</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4>Ви впевнені, що хочете видалити даний рейс?</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+            <button type="button" class="btn btn-primary" (click)="deleteRace()">Підтвердити</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <pagination *ngIf="config.paging"
+                class="pagination-sm"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+    <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+  </section>
+</div>
+
+

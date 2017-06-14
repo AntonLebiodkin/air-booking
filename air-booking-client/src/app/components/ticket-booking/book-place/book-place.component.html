@@ -1,0 +1,131 @@
+<button class="btn btn-primary" (click)="back()">Назад</button>
+<button class="btn btn-warning" (click)="clear()">Очистити</button>
+
+<section class="direction" *ngIf="direction">
+  <h4>Ви хочете забронювати квиток на рейс - {{ direction._id}}</h4>
+  <p>Оберіть класс місця на рейсі</p>
+  <div class="options">
+    <div class="radio place-option">
+      <label class="radio"><input type="radio" name="optradio" (click)="placeClass = 'economy'">Економ</label>
+      <p>Залишилось - {{ direction.economyLeft }}</p>
+    </div>
+    <div class="radio place-option">
+      <label class="radio"><input type="radio" name="optradio" (click)="placeClass = 'first'">Перший клас</label>
+      <p>Залишилось - {{ direction.firstLeft }}</p>
+    </div>
+    <div class="radio place-option">
+      <label class="radio"><input type="radio" name="optradio" (click)="placeClass = 'business'">Бізнес клас</label>
+      <p>Залишилось - {{ direction.businessLeft }}</p>
+    </div>
+  </div>
+
+  <p class="error" *ngIf="!enoughMoney()">Вам не вистачає коштів на даний рейс</p>
+
+  <div class="card" *ngIf="placeChoosed">
+    <h3 class="card-header">Білет на літак</h3>
+    <div class="card-block">
+
+      <p class="card-text">Літак - {{ direction.plane.brand }} {{  direction.plane.model }} {{ direction.plane.serialId }}</p>
+      <hr>
+      <p class="card-text">Відправлення з {{ direction.from.country}}, {{ direction.from.city}}</p>
+      <p class="card-text">Час відправлення - {{ direction.from.time | date }}</p>
+      <hr>
+      <p class="card-text">Прибуття в {{ direction.to.country}}, {{ direction.to.city}}</p>
+      <p class="card-text">Час прибуття - {{ direction.to.time | date }}</p>
+      <hr>
+      <p class="card-text">Місце №{{ placeChoosed.number}}, {{placeChoosed.class}} class</p>
+      <label for="plusChild">
+        <input id="plusChild" type="checkbox" name="plusChild" [(ngModel)]="placeChoosed.plusChild" #plusChild="ngModel">
+        + дитина до 12 років
+      </label>
+      <hr>
+      <h5>Ціна - {{ placeChoosed.price | currency }}</h5>
+
+    </div>
+  </div>
+
+  <button *ngIf="placeChoosed && enoughMoney()" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">Забронювати</button>
+
+
+  <div class="places">
+    <div class="economyPlaces" *ngIf="placeClass === 'economy'">
+        <div class="place economyPlace"
+             (click)="choosePlace(ep)"
+             *ngFor="let ep of economyPlaces"
+             [ngClass]="{
+                 'notAvailable': !ep.available,
+                 'available': ep.available,
+                 'choosed': placeChoosed && ep.number === placeChoosed.number && ep.class === placeChoosed.class
+             }">
+          <p>{{ ep.number }}</p>
+        </div>
+    </div>
+    <div class="firstPlaces" *ngIf="placeClass === 'first'">
+      <div class="place firstPlace"
+           (click)="choosePlace(fp)"
+           *ngFor="let fp of firstPlaces"
+           [ngClass]="{
+              'notAvailable': !fp.available,
+              'available': fp.available,
+              'choosed': placeChoosed && fp.number === placeChoosed.number && fp.class === placeChoosed.class
+           }">
+        <p>{{ fp.number }}</p>
+      </div>
+    </div>
+    <div class="businessPlaces" *ngIf="placeClass === 'business'">
+      <div class="place businessPlace"
+           (click)="choosePlace(bp)"
+           *ngFor="let bp of businessPlaces"
+           [ngClass]="{
+             'notAvailable': !bp.available,
+             'available': bp.available,
+             'choosed': placeChoosed && bp.number === placeChoosed.number && bp.class === placeChoosed.class
+            }">
+        <p>{{ bp.number }}</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" *ngIf="direction">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Бронювання рейсу</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Ви підтверджуєте, що хочете забронювати даний рейс?</h4>
+      </div>
+      <h3 class="card-header">Білет на літак</h3>
+      <div class="card-block" *ngIf="placeChoosed">
+
+        <p class="card-text">Літак - {{ direction.plane.brand }} {{  direction.plane.model }} {{ direction.plane.serialId }}</p>
+        <hr>
+        <p class="card-text">Відправлення з {{ direction.from.country}}, {{ direction.from.city}}</p>
+        <p class="card-text">Час відправлення - {{ direction.from.time | date }}</p>
+        <hr>
+        <p class="card-text">Прибуття в {{ direction.to.country}}, {{ direction.to.city}}</p>
+        <p class="card-text">Час прибуття - {{ direction.to.time | date }}</p>
+        <hr>
+        <p class="card-text">Місце №{{ placeChoosed.number}}, {{placeChoosed.class}} class</p>
+        <label *ngIf="placeChoosed.plusChild">
+          + дитина до 12 років
+        </label>
+        <hr>
+        <h5>Ціна - {{ placeChoosed.price | currency}}</h5>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+        <button type="button" class="btn btn-primary" (click)="bookRace()">Підтвердити</button>
+      </div>
+    </div>
+  </div>
+</div>
+

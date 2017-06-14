@@ -1,0 +1,24 @@
+<div class="card" *ngIf="ticket">
+  <h3 class="card-header">Білет на літак</h3>
+  <div class="card-block">
+    <p class="card-text">Літак - {{ ticket.race.plane.brand }} {{ ticket.race.plane.model }} {{ ticket.race.plane.serialId }}</p>
+    <hr>
+
+    <p class="card-text">Відправлення з {{ ticket.race.from.country}}, {{ ticket.race.from.city}}</p>
+    <p class="card-text">Час відправлення - {{ ticket.race.from.time | date }}</p>
+    <hr>
+
+    <p class="card-text">Прибуття в {{ ticket.race.to.country}}, {{ ticket.race.to.city}}</p>
+    <p class="card-text">Час прибуття - {{ ticket.race.to.time | date }}</p>
+    <hr>
+    <div class="place" *ngIf="ticket.place">
+      <p class="card-text">Місце №{{ ticket.place.number}}, {{ ticket.place.class}} class</p>
+      <label *ngIf="ticket.place.plusChild">
+        + дитина до 12 років
+      </label>
+      <hr>
+      <h5>Ціна - {{ ticket.place.price | currency}}</h5>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+  <button class="btn btn-primary" (click)="goBack()">Назад</button>
+  <h2 class="header">Перегляд літака</h2>
+  <div class="plane-create">
+    <div class="wrapper" *ngIf="plane">
+
+
+        <label>Марка літака</label>
+        <h4>{{ plane.brand }}</h4>
+
+        <label>Модель літака літака</label>
+        <h4>{{ plane.model }}</h4>
+
+        <label>Серійний номер літака</label>
+        <h4>{{ plane.serialId }}</h4>
+
+        <img class="plane-image" *ngIf="plane.photoUrl" [src]="plane.photoUrl" alt="">
+
+    </div>
+  </div><!-- /card-container -->
+</div><!-- /container -->

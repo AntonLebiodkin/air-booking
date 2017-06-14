@@ -1,0 +1,42 @@
+.header-link {
+  margin: 10px;
+  font-size: 18px;
+  height: 40px;
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+}
+
+.add-money {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-money button {
+  margin: 10px;
+}
+
+.header-main img {
+  margin-right: 15px;
+}
+
+.profile-card {
+  cursor: pointer;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  height: 65px;
+}
+
+.profile-card p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.admin-button {
+  margin-top: 8px;
+  margin-right: 15px;
+}

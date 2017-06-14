@@ -1,0 +1,5 @@
+{
+    "database": "mongodb://localhost:27017/air-booking",
+    "apiUrl": "http://localhost:3000",
+    "secret": "SECRETCODE"
+}

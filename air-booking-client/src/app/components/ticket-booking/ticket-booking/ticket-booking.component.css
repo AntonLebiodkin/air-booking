@@ -1,0 +1,90 @@
+.select2-choices {
+  min-height: 150px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+select2 {
+  height: 70px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit-option {
+  margin: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: .2em;
+  font-weight: bold;
+}
+
+.select2-selection .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+  height: 40px;
+}
+
+.select2-selection .select2-selection--single {
+  line-height: 40px;
+}
+
+.form-days {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.btn-signin {
+  margin-top: 30px;
+}
+
+.date-time-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-time-input-group input {
+  width: 45%;
+}
+.booking-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.booking-header {
+  margin-bottom: 30px;
+
+}
+
+.found-races {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.race-view-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 530px;
+}

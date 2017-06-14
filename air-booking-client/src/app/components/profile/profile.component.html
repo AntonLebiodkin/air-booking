@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="profile-row">
+    <div class="panel panel-info profile-block" *ngIf="user">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{user.firstName}} {{user.lastName}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="profile-avatar"><img alt="User Pic" src="/assets/avatar_2x.png" class="img-circle img-responsive img-avatar"> </div>
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Date of Birth</td>
+                    <td>{{ user.birthDate }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    <section class="booked-tickets" *ngIf="tickets">
+      <h4>Ваші квитки:</h4>
+      <div class="tickets-wrapper" *ngIf="tickets.length">
+        <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket"></app-ticket-card>
+      </div>
+      <h5 *ngIf="!tickets.length">Наразі у вас немає заброньованих квитків :(</h5>
+
+    </section>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="/assets/avatar_2x.png" />
+    <p id="profile-name" class="profile-name-card"></p>
+
+    <form class="form-signin" [formGroup]="registerForm" novalidate>
+
+      <span id="reauth-email" class="reauth-email"></span>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': submitted && registerForm.controls.firstName.errors && registerForm.controls.firstName.errors.required }">
+        <label>Ім'я</label>
+        <input type="text" id="inputName" class="form-control" placeholder="Введіть ім'я" formControlName="firstName" autofocus>
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.firstName.errors && registerForm.controls.firstName.errors.required">Ім'я обов'язкове!</p>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': submitted && registerForm.controls.lastName.errors &&  registerForm.controls.lastName.errors.required }">
+        <label>Прізвище</label>
+        <input type="text" id="inputSurname" class="form-control" placeholder="Введіть прізвище" formControlName="lastName">
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.lastName.errors &&  registerForm.controls.lastName.errors.required">Прізвище обов'язкове!</p>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': registerForm.controls.email.errors && ((submitted && registerForm.controls.email.errors.required) || (registerForm.controls.email.errors.pattern) || registerForm.controls.email.errors.emailExists)  }">
+        <label>Електронна пошта</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Введіть електронну пошту" formControlName="email">
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.email.errors && registerForm.controls.email.errors.required">Електронна пошта обов'язкова</p>
+        <p class="form-error-message" *ngIf="registerForm.controls.email.errors && registerForm.controls.email.errors.pattern">Електронна пошта не валідна</p>
+        <p class="form-error-message" *ngIf="registerForm.controls.email.errors && registerForm.controls.email.errors.emailExists">Дана електронна пошта вже зареєстрована</p>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': submitted && registerForm.controls.birthDate.errors && registerForm.controls.birthDate.errors.required }">
+        <label>Дата народження</label>
+        <input type="date" id="inputBirthDate" class="form-control" placeholder="Дата народження" formControlName="birthDate">
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.birthDate.errors && registerForm.controls.birthDate.errors.required">Дата народження є обов'язковою</p>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': registerForm.controls.password.errors && (submitted && registerForm.controls.password.errors.required || registerForm.controls.password.touched && registerForm.controls.password.errors.minlength) }">
+        <label>Пароль</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Введіть пароль" formControlName="password">
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.password.errors && registerForm.controls.password.errors.required">Пароль обов'язковий</p>
+        <p class="form-error-message" *ngIf="submitted && registerForm.controls.password.errors && registerForm.controls.password.errors.minlength">Пароль має складатись не менше, ніж 6 символів</p>
+      </div>
+
+      <div class="form-group" [ngClass]="{ 'has-danger': registerForm.controls.password.touched && registerForm.errors && registerForm.errors.mismatchedPasswords }">
+        <label>Підтвердіть Пароль</label>
+        <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Підтвердіть Ваш пароль" formControlName="confirmPassword">
+        <p class="form-error-message" *ngIf="registerForm.controls.password.touched && registerForm.errors && registerForm.errors.mismatchedPasswords">Паролі не співпадають :(</p>
+      </div>
+
+      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="register()">Зареєструватись</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/flickity/dist/flickity.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+app-air-video {
+
+}
+
+/*app-air-video:before {*/
+  /*content: '';*/
+  /*position: absolute;*/
+  /*background: black;*/
+  /*opacity: 0.3;*/
+  /*top: 0;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
+  /*left: 0;*/
+/*}*/

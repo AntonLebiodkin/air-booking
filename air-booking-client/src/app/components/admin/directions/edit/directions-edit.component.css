@@ -1,0 +1,48 @@
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit-option {
+  margin: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: .2em;
+  font-weight: bold;
+}
+
+.select2-selection .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+  height: 40px;
+}
+
+.select2-selection .select2-selection--single {
+  line-height: 40px;
+}
+
+.form-days {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.btn-signin {
+  margin-top: 30px;
+}
+
+.date-time-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-time-input-group input {
+  width: 45%;
+}

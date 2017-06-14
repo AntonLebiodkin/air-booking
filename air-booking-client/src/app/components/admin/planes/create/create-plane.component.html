@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="plane-create">
+    <div class="wrapper">
+      <h3 class="header">Створення літака</h3>
+      <form class="form-create-plane" name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+        <span id="reauth-email" class="reauth-email"></span>
+
+        <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !brand.valid }">
+          <input type="text" id="inputBrand" class="form-control" placeholder="Марка літака" name="brand" [(ngModel)]="plane.brand" #brand="ngModel" autofocus required>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !model.valid }">
+          <input type="text" id="inputModel" class="form-control" placeholder="Модель літака" name="model" [(ngModel)]="plane.model" #model="ngModel" autofocus required>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !serialId.valid }">
+          <input type="text" id="inputSerialId" class="form-control" placeholder="Серійний номер літака" name="serialId" [(ngModel)]="plane.serialId" #serialId="ngModel" autofocus required>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !photoUrl.valid }">
+          <input type="text" id="inputPhotoUrl" class="form-control" placeholder="URL на зображення літака" name="photoUrl" [(ngModel)]="plane.photoUrl" #photoUrl="ngModel" autofocus required>
+          <img *ngIf="plane.photoUrl" [src]="plane.photoUrl" alt="" class="plane-image">
+        </div>
+
+        <button [disabled]="loading" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Створити</button>
+      </form><!-- /form -->
+    </div>
+  </div><!-- /card-container -->
+</div><!-- /container -->

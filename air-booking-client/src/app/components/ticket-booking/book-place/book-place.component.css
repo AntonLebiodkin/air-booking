@@ -1,0 +1,61 @@
+.direction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.place-option {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+}
+
+app-ticket-card {
+  padding: 15px;
+}
+
+.places {
+  width: 80%;
+  flex-flow: row wrap;
+}
+
+.places:after {
+  content: "";
+  flex: auto;
+}
+
+.place {
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  flex: 1;
+  flex-basis: 3%;
+  margin: 10px;
+  cursor: pointer;
+  background:  #90C695;
+}
+
+.economyPlaces, .firstPlaces, .businessPlaces {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.notAvailable {
+  background: #DADFE1;
+  cursor: default;
+}
+
+.available {
+  transition: 0.2s all;
+}
+
+.available:not('.choosed'):hover {
+  background: #26A65B;
+}
+
+.choosed {
+  background: #f39c12;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+

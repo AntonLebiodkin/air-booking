@@ -1,0 +1,24 @@
+.air-video {
+  /*height: 100%;*/
+  /*margin-top: -40px;*/
+  width: 100%;
+  /*height: 100%;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /*height: 100vh;*/
+}
+
+.air-header-text {
+  z-index: 1000;
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 30%;
+  /*bottom: 30%;*/
+  font-size: 4em;
+  color: white;
+  text-align: center;
+  /*left: 100px;*/
+}

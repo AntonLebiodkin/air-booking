@@ -1,0 +1,21 @@
+.directions-view-block {
+  width: 100%;
+}
+
+.directions-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.row {
+  justify-content: space-between;
+}
+
+ng-table {
+  width: 600px !important;
+}
+
+.plane-small {
+  width: 50px;
+}

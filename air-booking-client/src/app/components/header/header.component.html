@@ -1,0 +1,78 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand header-main" [routerLink]="['']">
+    <img src="/assets/plane-logo.svg" width="50" height="50" class="d-inline-block align-top" alt="">
+    Air Booking
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link header-link" [routerLink]="['/booking']">Забронювати квиток</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-link" [routerLink]="['/pricing']">Pricing</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="!userLoggenIn()">
+      <li class="nav-item">
+        <a class="nav-link header-link" [routerLink]="['/register']">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-link" [routerLink]="['/login']">Login</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="userLoggenIn() && user">
+      <li class="nav-item">
+        <button class="btn btn-primary btn-lg admin-button" [routerLink]="['/admin']">Admin Panel</button>
+      </li>
+
+      <button class="btn btn-warning" data-toggle="modal" data-target="#addCreditsModal">Add Money</button>
+
+      <div class="card">
+        <div class="card-block profile-card" [routerLink]="['/profile']">
+          <p>Money: {{ user.money | currency}}</p>
+        </div>
+      </div>
+      <li class="nav-item">
+
+        <div class="card">
+
+          <div class="card-block profile-card" [routerLink]="['/profile']">
+            <p>Name: {{ user.firstName }}</p>
+            <p>Surname: {{ user.lastName }}</p>
+            <p>Birthdate: {{ user.birthDate | date}}</p>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="modal fade" id="addCreditsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Додати гроші</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body add-money">
+        <button class="btn btn-success" (click)="addMoney(200)">Додати 200$</button>
+        <button class="btn btn-success" (click)="addMoney(400)">Додати 400$</button>
+        <button class="btn btn-success" (click)="addMoney(600)">Додати 600$</button>
+        <button class="btn btn-success" (click)="addMoney(800)">Додати 800$</button>
+        <button class="btn btn-success" (click)="addMoney(1000)">Додати 1000$</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
